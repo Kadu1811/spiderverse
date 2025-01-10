@@ -1,6 +1,8 @@
 import { HeroesList } from "@/components";
 import { heroesInfoData } from "./api/heroes/heroes";
 
+// ENDPOINT IS RECIEVING ERROR 500 SERVE IS DOWN
+
 // async function getHeroesData(): Promise<IHeroData> {
 //   const res = await fetch(`${process.env.DOMAIN_ORIGIN}/api/heroes`);
 
