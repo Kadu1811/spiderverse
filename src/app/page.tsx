@@ -1,5 +1,6 @@
 import { HeroesList } from "@/components";
 import { heroesInfoData } from "./api/heroes/heroes";
+import styles from "./page.module.scss";
 
 // ENDPOINT IS RECIEVING ERROR 500 SERVE IS DOWN
 
@@ -16,5 +17,9 @@ import { heroesInfoData } from "./api/heroes/heroes";
 export default async function Home() {
   // const heroes = await getHeroesData();
 
-  return <HeroesList heroes={heroesInfoData} />;
+  return (
+    <main className={styles.main}>
+      <HeroesList heroes={heroesInfoData} />
+    </main>
+  );
 }
