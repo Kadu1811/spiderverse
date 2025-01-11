@@ -1,6 +1,7 @@
-import { HeroesList } from "@/components";
-import { heroesInfoData } from "./api/heroes/heroes";
+import { HeroesList } from "@/components/HeroesList";
 import styles from "./page.module.scss";
+
+import { heroesInfoData } from "./api/heroes/heroes";
 
 // ENDPOINT IS RECIEVING ERROR 500 SERVE IS DOWN
 
