@@ -6,6 +6,7 @@ import styles from "./heroesList.module.scss";
 import { HeroPictures } from "../HeroPictures";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 interface IProps {
   heroes: IHeroData[];
@@ -37,7 +38,9 @@ const HeroesList = ({ heroes }: IProps) => {
             whileTap={{ scale: 0.8 }}
             transition={{ duration: 0.8 }}
           >
-            <HeroPictures hero={hero} />
+            <Link href={`/hero/${hero.id}`}>
+              <HeroPictures hero={hero} />
+            </Link>
           </motion.div>
         ))}
       </motion.section>
