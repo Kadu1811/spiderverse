@@ -12,7 +12,7 @@ export const heroesInfoData = [
     },
   },
   {
-    id: "mulher-aranha-65",
+    id: "spider-gwen-65",
     name: "Mulher-Aranha",
     universe: 65,
     details: {
