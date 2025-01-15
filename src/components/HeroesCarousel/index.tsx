@@ -3,7 +3,7 @@
 import { IHeroData } from "@/interfaces/heroes";
 import HeroDetails from "../HeroesDetails";
 import styles from "./carousel.module.scss";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { HeroPictures } from "../HeroPictures";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -22,6 +22,23 @@ export default function HeroesCarousel({ heroes, activeId }: IProps) {
   const [visibleItems, setVisibleItems] = useState<IHeroData[] | null>(null);
   const [activeIndex, setActiveIndex] = useState<number>(
     heroes.findIndex((hero) => hero.id === activeId) - 1
+  );
+  const [startInterationPosition, setStartInterationPosition] =
+    useState<number>(0);
+
+  const transitionAudio = useMemo(() => new Audio("/songs/transition.mp3"), []);
+
+  const voicesAudio: Record<string, HTMLAudioElement> = useMemo(
+    () => ({
+      "spider-man-616": new Audio("/songs/spider-man-616.mp3"),
+      "spider-gwen-65": new Audio("/songs/spider-gwen-65.mp3"),
+      "spider-man-1610": new Audio("/songs/spider-man-1610.mp3"),
+      "sp-dr-14512": new Audio("/songs/sp-dr-14512.mp3"),
+      "spider-ham-8311": new Audio("/songs/spider-ham-8311.mp3"),
+      "spider-man-90214": new Audio("/songs/spider-man-90214.mp3"),
+      "spider-man-928": new Audio("/songs/spider-man-928.mp3"),
+    }),
+    []
   );
 
   useEffect(() => {
@@ -52,6 +69,56 @@ export default function HeroesCarousel({ heroes, activeId }: IProps) {
     };
   }, [visibleItems]);
 
+  useEffect(() => {
+    if (!visibleItems) {
+      return;
+    }
+
+    transitionAudio.play();
+
+    const voiceAudio = voicesAudio[visibleItems[enPosition.MIDLE].id];
+
+    if (!voiceAudio) {
+      return;
+    }
+
+    voiceAudio.volume = 0.3;
+    voiceAudio.play();
+  }, [visibleItems, transitionAudio, voicesAudio]);
+
+  const handleChangeDragTouch = (clientX: number) => {
+    const endInteractionPosition = clientX;
+    const diffPosition = endInteractionPosition - startInterationPosition;
+
+    const newPosition = diffPosition > 0 ? -1 : 1;
+
+    handleChangeActiveindex(newPosition);
+  };
+
+  const handleDragStart = (e: React.DragEvent<HTMLDivElement>) => {
+    setStartInterationPosition(e.clientX);
+  };
+
+  const handleDragEnd = (e: React.DragEvent<HTMLDivElement>) => {
+    if (!startInterationPosition) {
+      return null;
+    }
+
+    handleChangeDragTouch(e.clientX);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setStartInterationPosition(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!startInterationPosition) {
+      return null;
+    }
+
+    handleChangeDragTouch(e.changedTouches[0].clientX);
+  };
+
   const handleChangeActiveindex = (newDirection: number) => {
     setActiveIndex((prevActiveIndex) => prevActiveIndex + newDirection);
   };
@@ -65,7 +132,10 @@ export default function HeroesCarousel({ heroes, activeId }: IProps) {
       <div className={styles.carousel}>
         <div
           className={styles.wrapper}
-          onClick={() => handleChangeActiveindex(1)}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
         >
           <AnimatePresence mode="popLayout">
             {visibleItems.map((item, position) => (
@@ -90,7 +160,7 @@ export default function HeroesCarousel({ heroes, activeId }: IProps) {
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 2 }}
       >
-        <HeroDetails data={heroes[0]} />
+        <HeroDetails data={visibleItems[enPosition.MIDLE]} />
       </motion.div>
     </div>
   );
