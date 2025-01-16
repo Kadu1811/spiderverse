@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@use "./variables.scss" as vars;
 
 :root {
   height: 100vh;
@@ -7,7 +7,7 @@
 
   &:not(.hero-page)::before {
     content: "";
-    background: $background;
+    background: vars.$background;
     height: 100%;
     width: 100%;
     position: absolute;
@@ -17,9 +17,9 @@
 
 body {
   position: relative;
-  color: $text-color;
+  color: vars.$text-color;
   margin: auto;
-  max-width: $max-width;
+  max-width: vars.$max-width;
   height: calc(100vh - 3.5rem);
   overflow: hidden;
 }
