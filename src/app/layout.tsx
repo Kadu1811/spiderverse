@@ -30,6 +30,7 @@ export default function RootLayout({
               alt="Spiderman Logo"
               width={260}
               height={70}
+              priority
             />
           </Link>
 
