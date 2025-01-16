@@ -8,7 +8,7 @@ interface IProps {
 }
 
 export default async function HeroPage({ params }: IProps) {
-  const { id } = params;
+  const { id } = await params;
   const heroes = await getHeroesData();
 
   return <HeroesCarousel heroes={heroes.data} activeId={id} />;
