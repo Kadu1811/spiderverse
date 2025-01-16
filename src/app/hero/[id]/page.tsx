@@ -1,12 +1,6 @@
 import getHeroesData from "@/app/api/heroes/spiders";
 import HeroesCarousel from "@/components/HeroesCarousel";
 
-interface IProps {
-  params: {
-    id: string;
-  };
-}
-
 export async function generateStaticParams() {
   const heroes = await getHeroesData();
   return heroes.data.map((hero: { id: string }) => ({
@@ -14,7 +8,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export default async function HeroPage({ params }: IProps) {
+export default async function HeroPage({ params }: { params: { id: string } }) {
   const { id } = await params;
   const heroes = await getHeroesData();
 
