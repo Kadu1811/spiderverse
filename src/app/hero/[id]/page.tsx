@@ -7,6 +7,13 @@ interface IProps {
   };
 }
 
+export async function generateStaticParams() {
+  const heroes = await getHeroesData();
+  return heroes.data.map((hero: { id: string }) => ({
+    id: hero.id,
+  }));
+}
+
 export default async function HeroPage({ params }: IProps) {
   const { id } = await params;
   const heroes = await getHeroesData();
