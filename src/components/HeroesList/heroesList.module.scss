@@ -1,10 +1,10 @@
-@import "@/app/variables.scss";
+@use "@/app/variables.scss" as vars;
 
 .title {
   font-size: 26vw;
   margin: 0;
 
-  @media screen and (min-width: $max-width) {
+  @media screen and (min-width: vars.$max-width) {
     font-size: 30rem;
   }
 }
@@ -14,14 +14,14 @@
   align-items: flex-end;
   justify-content: space-between;
 
-  max-width: calc($max-width - 700px);
+  max-width: calc(vars.$max-width - 700px);
   width: 100%;
 
   position: absolute;
   top: 40%;
 
-  @media screen and (min-width: $max-width) {
-    max-width: calc($max-width - 400px);
+  @media screen and (min-width: vars.$max-width) {
+    max-width: calc(vars.$max-width - 400px);
     top: 50%;
   }
 }
@@ -37,30 +37,30 @@
   }
 
   &.spider-man-616 {
-    height: $spider-man-616-height;
+    height: vars.$spider-man-616-height;
   }
 
   &.spider-gwen-65 {
-    height: $spider-gwen-65-height;
+    height: vars.$spider-gwen-65-height;
   }
 
   &.spider-man-1610 {
-    height: $spider-man-1610-height;
+    height: vars.$spider-man-1610-height;
   }
 
   &.spider-ham-8311 {
-    height: $spider-ham-8311-height;
+    height: vars.$spider-ham-8311-height;
   }
 
   &.spider-man-90214 {
-    height: $spider-man-90214-height;
+    height: vars.$spider-man-90214-height;
   }
 
   &.spider-man-928 {
-    height: $spider-man-928-height;
+    height: vars.$spider-man-928-height;
   }
 
   &.sp-dr-14512 {
-    height: $sp-dr-14512-height;
+    height: vars.$sp-dr-14512-height;
   }
 }
