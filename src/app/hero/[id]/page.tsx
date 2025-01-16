@@ -1,12 +1,13 @@
 import getHeroesData from "@/app/api/heroes/spiders";
 import HeroesCarousel from "@/components/HeroesCarousel";
 
-interface IParams {
-  id: string;
+interface IProps {
+  params: {
+    id: string;
+  };
 }
 
-export default async function Hero({ params }: { params: IParams }) {
-  const { id } = await params;
+export default async function Hero({ params: { id } }: IProps) {
   const heroes = await getHeroesData();
 
   return <HeroesCarousel heroes={heroes.data} activeId={id} />;
