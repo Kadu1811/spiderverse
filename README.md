@@ -2,7 +2,7 @@
 
 <h1 align="center">Spiderverse</h1>
 
-<h2 align="center"><a href="https://spiderverse-rouge.vercel.app/">Confira!</a></h2>
+<h2 align="center"><a href="https://spiderverse-rouge.vercel.app/">Deploy</a></h2>
 
 <h3 align="center">Made using Nextjs, Typescript, Sass to build a my multiverse of spiders.</h3>
 
