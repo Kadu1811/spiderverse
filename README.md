@@ -1,5 +1,3 @@
-# spiderverse
-
 <h1 align="center">Spiderverse</h1>
 
 <h2 align="center"><a href="https://spiderverse-rouge.vercel.app/">Deploy</a></h2>
